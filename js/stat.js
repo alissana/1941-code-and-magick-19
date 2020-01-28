@@ -6,7 +6,7 @@ var CLOUD_X = 100;
 var CLOUD_Y = 10;
 var GAP = 10;
 var FONT_GAP = 20;
-var COLUMN_GAP = 50;
+var BAR_GAP = 50;
 var BAR_HEIGHT = 150;
 var BAR_WIDTH = 40;
 
@@ -45,9 +45,9 @@ window.renderStatistics = function (ctx, players, times) {
     }
 
     var HISTOGRAM_HEIGHT = (BAR_HEIGHT * times[i]) / maxTime;
-    ctx.fillRect(CLOUD_X + GAP * 5 + BAR_WIDTH * i + COLUMN_GAP * i, CLOUD_HEIGHT - GAP * 3 - HISTOGRAM_HEIGHT, BAR_WIDTH, HISTOGRAM_HEIGHT);
+    ctx.fillRect(CLOUD_X + GAP * 5 + BAR_WIDTH * i + BAR_GAP * i, CLOUD_HEIGHT - GAP * 3 - HISTOGRAM_HEIGHT, BAR_WIDTH, HISTOGRAM_HEIGHT);
 
     ctx.fillStyle = '#000';
-    ctx.fillText(players[i], CLOUD_X + GAP * 5 + BAR_WIDTH * i + COLUMN_GAP * i, CLOUD_HEIGHT - GAP);
+    ctx.fillText(players[i], CLOUD_X + GAP * 5 + BAR_WIDTH * i + BAR_GAP * i, CLOUD_HEIGHT - GAP);
   }
 };
