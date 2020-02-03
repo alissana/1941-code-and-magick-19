@@ -69,5 +69,8 @@ window.renderStatistics = function (ctx, players, times) {
     var HISTOGRAM_HEIGHT = (BAR_HEIGHT * times[i]) / maxTime;
     ctx.fillRect(CLOUD_X + 50 + BAR_WIDTH * i + BAR_GAP * i, CLOUD_HEIGHT - 30 - HISTOGRAM_HEIGHT, BAR_WIDTH, HISTOGRAM_HEIGHT);
     wrapText(ctx, players[i], CLOUD_X + 50 + BAR_WIDTH * i + BAR_GAP * i, CLOUD_HEIGHT - 10, 50, '16px PT Mono', '#000');
+
+    var time = Math.ceil(times[i]);
+    wrapText(ctx, time.toString(), CLOUD_X + 50 + BAR_WIDTH * i + BAR_GAP * i, CLOUD_HEIGHT - 40 - HISTOGRAM_HEIGHT, 50, '16px PT Mono', '#000');
   }
 };
