@@ -1,17 +1,16 @@
 'use strict';
 
-var ESC_KEY = 'Escape';
-var ENTER_KEY = 'Enter';
-var MIN_NAME_LENGTH = 2;
-
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var WIZARD_SURNAME = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARD_COAT = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARD_EYES = ['black', 'red', 'blue', 'yellow', 'green'];
 var FIREBALL = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
-var userDialog = document.querySelector('.setup');
+var ESC_KEY = 'Escape';
+var ENTER_KEY = 'Enter';
+var MIN_NAME_LENGTH = 2;
 
+var userDialog = document.querySelector('.setup');
 var similarListElement = userDialog.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
@@ -21,15 +20,17 @@ userDialog.querySelector('.setup-similar').classList.remove('hidden');
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
+var userNameInput = setup.querySelector('.setup-user-name');
 
 var wizardCoat = setup.querySelector('.setup-wizard .wizard-coat');
-var inputCoat = setup.querySelector('.setup-player input[name = coat-color]');
+var inputColorCoat = setup.querySelector('input[name=coat-color]');
 
 var wizardEyes = setup.querySelector('.setup-wizard .wizard-eyes');
-var inputEyes = setup.querySelector('.setup-player input[name = eyes-color]');
+var inputColorEyas = setup.querySelector('input[name=eyes-color]');
 
 var fireball = setup.querySelector('.setup-fireball-wrap');
-var inputFireballColor = fireball.querySelector('input[name = fireball-color]');
+var inputColorFareball = setup.querySelector('input[name=fireball-color]');
+
 
 function getArraySum(firstArr, secondArr) {
   var length = (firstArr.length !== secondArr.length) ? Math.min(firstArr.length, secondArr.length) : firstArr.length;
@@ -94,7 +95,7 @@ copyWizard(4);
 // Обработчики событий
 
 var onPopupEscPress = function (evt) {
-  if (evt.key === ESC_KEY && evt.target !== document.querySelector('.setup-user-name')) {
+  if (evt.key === ESC_KEY && evt.target !== userNameInput) {
     closePopup();
   }
 };
@@ -129,9 +130,7 @@ setupClose.addEventListener('keydown', function (evt) {
   }
 });
 
-var userNameInput = setup.querySelector('.setup-user-name');
-
-userNameInput.addEventListener('invalid', function (evt) {
+userNameInput.addEventListener('invalid', function () {
   if (userNameInput.validity.tooShort) {
     userNameInput.setCustomValidity('Имя должно состоять минимум из 2-х символов');
   } else if (userNameInput.validity.tooLong) {
@@ -145,7 +144,6 @@ userNameInput.addEventListener('invalid', function (evt) {
 
 userNameInput.addEventListener('input', function (evt) {
   var target = evt.target;
-
   if (target.value.length < MIN_NAME_LENGTH) {
     target.setCustomValidity('Имя должно состоять минимум из ' + MIN_NAME_LENGTH + '-х символов');
   } else {
@@ -157,19 +155,19 @@ wizardCoat.addEventListener('click', function () {
   var colorWizardCoat = getRandElement(WIZARD_COAT);
 
   wizardCoat.style.fill = colorWizardCoat;
-  inputCoat.value = colorWizardCoat;
+  inputColorCoat.value = colorWizardCoat;
 });
 
 wizardEyes.addEventListener('click', function () {
-  var colorWizardEyes = getRandElement(WIZARD_EYES);
+  var colorwizardEyes = getRandElement(WIZARD_EYES);
 
-  wizardEyes.style.fill = colorWizardEyes;
-  inputEyes.value = colorWizardEyes;
+  wizardEyes.style.fill = colorwizardEyes;
+  inputColorEyas.value = colorwizardEyes;
 });
 
 fireball.addEventListener('click', function () {
   var colorFireball = getRandElement(FIREBALL);
 
   fireball.style.backgroundColor = colorFireball;
-  inputFireballColor.value = colorFireball;
+  inputColorFareball.value = colorFireball;
 });
