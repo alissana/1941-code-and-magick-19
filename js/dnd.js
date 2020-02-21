@@ -42,7 +42,6 @@
         };
         dialogHandle.addEventListener('click', onClickPreventDefault);
       }
-
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);
     };

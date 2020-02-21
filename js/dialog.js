@@ -10,6 +10,8 @@
   };
 
   setupOpen.addEventListener('click', function () {
+    setup.style.top = '80px';
+    setup.style.left = '50%';
     openPopup();
   });
 
