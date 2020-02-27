@@ -12,6 +12,11 @@
   var wizardCoat = userDialog.querySelector('.setup-wizard .wizard-coat');
   var wizardEyes = userDialog.querySelector('.setup-wizard .wizard-eyes');
   var fireball = userDialog.querySelector('.setup-fireball-wrap');
+  var form = userDialog.querySelector('.setup-wizard-form');
+
+  var inputEyes = userDialog.querySelector('input[name=eyes-color]');
+  var inputCoat = userDialog.querySelector('input[name=coat-color]');
+  var inputFireBall = userDialog.querySelector('input[name=fireball-color]');
 
   function createWizard(wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -23,13 +28,13 @@
     return wizardElement;
   }
 
-  function loadHandler(wizards) {
+  function successHandler(wizards) {
     var fragment = document.createDocumentFragment();
     var unicWizards = [];
     var randItem;
 
     for (var i = 0; i < MAX_WIZARD_COUNT; i++) {
-      randItem = Math.floor(Math.random() * (wizards.length - i));
+      randItem = Math.floor(Math.random() * (wizards.length));
       unicWizards[i] = wizards[randItem];
       wizards.splice(randItem, 1);
       fragment.appendChild(createWizard(unicWizards[i]));
@@ -50,9 +55,18 @@
     document.body.insertAdjacentElement('afterbegin', node);
   }
 
-  window.colorize(wizardEyes, window.constants.WIZARD_COAT);
-  window.colorize(wizardCoat, window.constants.WIZARD_COAT);
-  window.colorize(fireball, window.constants.FIREBALL);
+  function successSubmitHandler(response) {
+    userDialog.classList.add('hidden');
+  }
 
-  window.backend.load(loadHandler, errorHandler);
+  form.addEventListener('submit', function (evt) {
+    window.backend.save(new FormData(form), successSubmitHandler, errorHandler);
+    evt.preventDefault();
+  });
+
+  window.colorize(wizardEyes, window.constants.WIZARD_EYES, inputEyes);
+  window.colorize(wizardCoat, window.constants.WIZARD_COAT, inputCoat);
+  window.colorize(fireball, window.constants.FIREBALL, inputFireBall);
+
+  window.backend.load(successHandler, errorHandler);
 })();
