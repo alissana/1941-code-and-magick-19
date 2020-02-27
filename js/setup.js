@@ -55,7 +55,7 @@
     document.body.insertAdjacentElement('afterbegin', node);
   }
 
-  function successSubmitHandler(response) {
+  function successSubmitHandler() {
     userDialog.classList.add('hidden');
   }
 
