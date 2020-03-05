@@ -16,7 +16,6 @@
     'blue',
     'black'
   ];
-
   var FIREBALL = [
     '#ee4830',
     '#30a8ee',
