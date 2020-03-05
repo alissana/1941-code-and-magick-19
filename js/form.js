@@ -2,7 +2,17 @@
 
 (function () {
   var userDialog = document.querySelector('.setup');
+  var form = userDialog.querySelector('.setup-wizard-form');
   var userNameInput = userDialog.querySelector('.setup-user-name');
+
+  function successSubmitHandler() {
+    userDialog.classList.add('hidden');
+  }
+
+  form.addEventListener('submit', function (evt) {
+    window.backend.save(new FormData(form), successSubmitHandler, window.setup.errorHandler);
+    evt.preventDefault();
+  });
 
   userNameInput.addEventListener('invalid', function () {
     if (userNameInput.validity.tooShort) {
