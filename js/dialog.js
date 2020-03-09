@@ -35,6 +35,6 @@
   var closePopup = function () {
     setup.classList.add('hidden');
     document.removeEventListener('keydown', onPopupEscPress);
-    document.removeEventListener('change', window.avatar.onloadImage);
+    document.removeEventListener('change', window.avatar.onLoadImageFile);
   };
 })();

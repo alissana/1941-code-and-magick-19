@@ -7,6 +7,7 @@
 
   function successSubmitHandler() {
     userDialog.classList.add('hidden');
+    window.avatar.preview.src = './img/user-1.jpg';
   }
 
   form.addEventListener('submit', function (evt) {

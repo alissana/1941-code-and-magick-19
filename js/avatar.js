@@ -6,7 +6,7 @@
 
   var fileChooser = document.querySelector('.upload input[type=file]');
   var preview = document.querySelector('.setup-user-pic');
-  var onLoadAvatar = function (evt) {
+  var onLoadImageFile = function (evt) {
     loadImageFile(evt);
   };
 
@@ -29,9 +29,10 @@
     }
   }
 
-  fileChooser.addEventListener('change', onLoadAvatar);
+  fileChooser.addEventListener('change', onLoadImageFile);
 
   window.avatar = {
-    onLoadAvatar: onLoadAvatar
+    onLoadImageFile: onLoadImageFile,
+    preview: preview
   };
 })();
